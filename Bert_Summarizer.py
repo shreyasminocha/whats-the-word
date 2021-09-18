@@ -14,12 +14,11 @@ class Bert_Summarizer:
         self.english_sentences = np.array(english_sentences_input, copy=True)
         self.bert_embed = np.array(bert_embed_input, copy=True)
 
-    def summarize(self):
+    def get_indices(self):
         '''
-        Summarizes the content in self.english_sentences using Clustering and BERT
+        Gets indices of key content in self.english_sentences using Clustering and BERT
         Out
-            english; array of english sentences that summarize the main points
-            sentence_ind; array of the indices of english found in self.english_sentences
+            sentence_ind; array of the indices of key sentences found in self.english_sentences
             kmeans; sklearn.cluster.KMeans object representing the fitted cluster of bert embeds
             n_cluster; number of clusters, equivalent to number of returned english sentences
         '''
@@ -27,10 +26,9 @@ class Bert_Summarizer:
         cluster = Clustering(self.bert_embed)
         n_cluster, kmeans = cluster.compute_optimal_custer(n_cluster_max)
         sentence_ind = cluster.get_central_sentences(n_cluster, kmeans)
-        english = self.indices_to_english(sentence_ind, toPrint=False)
-        return english, sentence_ind, kmeans, n_cluster
+        return sentence_ind, kmeans, n_cluster
 
-    def indices_to_english(self, indices, toPrint):
+    def indices_to_english(self, indices, toPrint=False):
         '''
         Returns the english sentences in self.english_sentences located at indices
         In
@@ -45,5 +43,19 @@ class Bert_Summarizer:
         if toPrint:
             print(english)
         return english
+
+    def indices_to_embed(self, indices):
+        '''
+        Returns the bert embed vectors located at indices
+        In
+            indices; array of indices from self.bert_embed to return as embed vectors
+        Out
+            array of bert embed vectors located at indices
+        '''
+        embed = np.empty(indices.shape)
+        for ind in indices:
+            embed[ind] = self.bert_embed[ind]
+        return embed
+
 
 
