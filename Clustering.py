@@ -9,10 +9,11 @@ class Clustering:
         Initializes this instance of Clustering class.
         In
             bert_embed_input; sentence embedding array output by BERT
+                                array-like of shape (n_samples, n_features)
         '''
         self.bert_embed = bert_embed_input
     
-    def fit_cluster(self, n_cluster, ):
+    def fit_cluster(self, n_cluster):
         '''
         Creates KMeans class.
         In
@@ -32,7 +33,7 @@ class Clustering:
         '''
         return silhouette_score(self.bert_embed, KMeans_fitted.labels_)
 
-    def optimal_cluster(self, n_cluster_max):
+    def compute_optimal_cluster(self, n_cluster_max):
         '''
         Finds the optimal number of clusters
         In
