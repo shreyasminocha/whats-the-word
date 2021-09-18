@@ -1,2 +1,7 @@
 web/venv
 web/__pycache__
+venv
+__pycache__
+whats-the-word*.json
+*.csv
+*.srt
