@@ -10,6 +10,12 @@
 	<link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
-	<p>{{ notes }}</p>
+	<div>
+		{% for result in notes %}
+    <tr>
+        <p>{{ result }}</p>
+    </tr>
+{% endfor %}
+	</div>
 </body>
 </html>
