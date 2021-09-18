@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "whats-the-word-326419",
+  "private_key_id": "996aab24a14599bd8d040466cc90422a373f7084",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDXbzsqS0TuhXKy\nzCJDMiVYi+nSUgXwvl+xlPBMuZBtg12bfPrePl6BIthTtInvwNboStUuLDJrKu0I\n//GAUGgoNMG8gxHGzIvqy0AsUK1iM7u22Lnxqmzgu6MxHtKS3R7DD22DxAhw/Sq8\nCqRMczss36CREHfVKwjeBqkViEzDs5HxVAPEnqVPt3nVHG6bMIVSGc0nrl4YurK9\nTtHBJYiN7u6u/nPbXxhfFjOAkvrpyvdEI7nMKvPcPJXl2X0gcTaDz3cDQ21Qzx1v\niq93+6RrRhymE5UHR/lp+EfGzZVS8q0OhYq1qk+I91qKSF91M+0jKIDyn2Up+AK+\nh+5cAP5NAgMBAAECggEAT7rYRDZYHAhiYx6eXY0M+kDJt+9oSGlEZCXxawvQEl+o\nQJfYBnFBq3w4YH40AHm3b3/mdrCftj7MO+TxPWJEsgCYZMqDRTZFYA95wAzZpjrs\nMWbzJifDJMb8xfyYxQa10E4A41+lGh/v9Wjg1nRdBaX7uERGfStwnC8N26y2cERy\nbWTR+hX/xnOnYgiG04NfB0EDMJ3+BDnxxPnekqfiCW41+ZfmGJMndRk53iQNLNlM\nYJrfYKixzooUchLUqkRA8hxJqZgxUSNe+tKDPcXLubX1UdD58ZfoyoemUsZFdjT4\nycTV8bf3yTw3joVVmNTWJ9s9RmJiWai2GvJ2bmhE5wKBgQD2HG524mMqCTrg4oEM\nj80X6zOncV0r1tkwqRez0bIYZsSjobXz53CI5Wp/VCTy90x7jytr5eCSAD1AVnvP\nnlHjnTDYpuNjoWCjX3D6tqDGdrJkHUrQhtbreWtJwpfvJAqgY+ru7nbzay7j4QUj\nzbyRTHyuF7/saS7UbZVhvQ0pKwKBgQDgF0BxoIjcHZkvzKMhs82Uy9QL6OTBZ1sd\nWGh0Xi0JMt+CL8hfsUwR4bkDgSCPqUKhUzWTI2rm23HI49vnmb6mlI3UEeRQ6m46\nPzN22UWH1tOZCpVWPE/zYnKV+U+QVyWoVfV412MixTEZo8UhBdY++tfo0BQ7fNQY\n1euwo+1KZwKBgQDuEyDUxjjRQC6BvvrBURZALhlAwAw2TVa6mMhB/fb/XeKYu+UM\ntXUKKIt18srvckS9PgjuDmjIM40NANwyQl/LBJNs8TwEc+bNA5WCIkqy0b3N1Pw7\nbkTXcxRTPPfGsSHKd/2a9nmBDc1FSba0JOBl2gy+SGEza6iOfBdGfiAOEwKBgHmq\nZiTLIkNQFqGrG07rDk0hNWmZ8slG0mNmYp/7mbwK0OsgAkxiOIjk4sySSRl2rmRk\nhwvyCNJ6hpapj/V4tdg/g5mGdU2xWlNpiQmYAXY1HwFSi64cZNQhuVDP4XDev+Vb\ndkE7v+la4sOm9Rpuztm2247dmn6J0aYCT0rCVc01AoGARCgtSW5DRKr2v8HESOZa\nTxjyJBsX0e6gXLudR6ni8uMUrnA1vSl9Wd21Jktieu/v/XF5WkQea2xfizjOcCT7\nAI0EOFmIEKKvAU+n33HEhScYYIy2UpkYtXGRPrynZcEdOqVFFfMfY7GnhxKPryWP\nUfKEN/FC86jqtrvEij0U4sI=\n-----END PRIVATE KEY-----\n",
+  "client_email": "whats-the-word-text-to-speech@whats-the-word-326419.iam.gserviceaccount.com",
+  "client_id": "101427219666909204051",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/whats-the-word-text-to-speech%40whats-the-word-326419.iam.gserviceaccount.com"
+}
