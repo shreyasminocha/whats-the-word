@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, redirect, url_for
 from werkzeug.utils import secure_filename
 
 ALLOWED_EXTS = ['srt', 'txt']
@@ -15,11 +15,14 @@ def index():
 
 @app.route('/notes', methods=['GET', 'POST'])
 def notes():
-
 	file = request.files['transcript']
 
 	if file.filename == '':
-		return 400
+		return render_template('notes.html', notes=[]), 400
+
+	permitted_file = ('.' in file.filename) and file.filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTS
+	if not permitted_file:
+		return render_template('notes.html', notes=[]), 400
 
 	filename = secure_filename(file.filename)
 	file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
