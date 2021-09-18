@@ -1,3 +1,4 @@
+import numpy
 from sklearn.cluster import KMeans
 from sklearn.metrics import silhouette_score
 
@@ -11,7 +12,7 @@ class Clustering:
         '''
         self.bert_embed = bert_embed_input
     
-    def fit_cluster(self, n_cluster):
+    def fit_cluster(self, n_cluster, ):
         '''
         Creates KMeans class.
         In
@@ -51,6 +52,18 @@ class Clustering:
                 best_n_cluster = n_cluster
                 best_KMeans = KMeans_fitted
         return best_n_cluster, best_KMeans
+
+    def get_central_sentences(n_cluster, KMeans_fitted):
+        '''
+        Find the best sentence for each cluster "main idea"
+        In
+            n_cluster; number of clusters
+            KMeans_fitted; fitted KMeans instance
+        Out
+            List of the central sentence within each cluster
+            List of the associated indices of each sentence within self.bert_embed
+        '''
+        main_sentences = numpy.empty((n_cluster, 1), dtype=numpy.int16)
 
     
 
