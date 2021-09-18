@@ -10,3 +10,5 @@ sentence_ind = cluster.get_central_sentences(n_cluster, kmeans)
 
 for ind in sentence_ind:
     print(english_sentences[ind])
+
+

@@ -11,7 +11,10 @@ class Clustering:
             bert_embed_input; sentence embedding array output by BERT
                                 array-like of shape (n_samples, n_features)
         '''
-        self.bert_embed = bert_embed_input
+        self.bert_embed = np.array(bert_embed_input)
+
+    def apply_embed_weights(self, weights):
+        self.bert_embed = np.multiply(self.bert_embed, weights)
     
     def fit_cluster(self, n_cluster):
         '''
