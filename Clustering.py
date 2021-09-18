@@ -1,4 +1,4 @@
-import numpy
+import numpy as np
 from sklearn.cluster import KMeans
 from sklearn.metrics import silhouette_score
 
@@ -53,23 +53,42 @@ class Clustering:
                 best_KMeans = KMeans_fitted
         return best_n_cluster, best_KMeans
 
-    def get_central_sentences(n_cluster, KMeans_fitted):
+    def get_central_sentences(self, n_cluster, KMeans_fitted):
         '''
         Find the best sentence for each cluster "main idea"
         In
             n_cluster; number of clusters
             KMeans_fitted; fitted KMeans instance
         Out
-            List of the central sentence within each cluster
-            List of the associated indices of each sentence within self.bert_embed
+            Array of the indices of each central sentence within self.bert_embed
         '''
-        main_sentences = numpy.empty((n_cluster, 1), dtype=numpy.int16)
+        main_sentences = np.empty((n_cluster, 1), dtype=np.int16)
+        for cluster_id in range(n_cluster):
+            clustered_sentences = self.get_clustered_sentences(cluster_id, KMeans_fitted)
+            centroid = KMeans_fitted.cluster_centers_[cluster_id]
+            lowest_dist = float('inf')
+            best_sentence = -1
+            for sentence_ind in clustered_sentences:
+                dist = self.distance(self.bert_embed[sentence_ind], centroid)
+                if dist < lowest_dist:
+                    lowest_dist = dist
+                    best_sentence = sentence_ind
+            main_sentences[cluster_id, 0] = best_sentence
+        return main_sentences
 
-    
+    def distance(self, vec1, vec2):
+        return np.linalg.norm(vec1 - vec2)
 
-X = np.array([[1, 2], [1, 4], [1, 0], [10, 2], [10, 4], [10, 0]])
-kmeans = kmeans_plusplus(n_clusters=2, random_state=0).fit(X)
-print(kmeans.labels_)
-kmeans.predict([[0, 0], [12, 3]])
-print(kmeans.cluster_centers_)
+    def get_clustered_sentences(self, cluster_id, KMeans_fitted):
+        '''
+        Returns indices of the self.bert_embed sentences that belong to specified cluster
+        In
+            cluster_id; integer identifier of the cluster of interest
+            KMeans_fitted; fitted KMeans model instance
+        Out
+            array of the indices of self.bert_embed sentences of cluster cluster_id
+        '''
+        indices = np.where(KMeans_fitted.labels_[0] == cluster_id)
+        return indices[0]
+
 
