@@ -1,13 +1,10 @@
-import Clustering
 import numpy as np
-import csv
+from Bert_Model import Bert_Model
+from Bert_Summarizer import Bert_Summarizer
 
-with open('test-class2.csv') as csv_file:
-    csv_reader = csv.reader(csv_file, delimiter=',')
-    rowcount = 0
-    for row in csv_reader:
-        if rowcount < 10:
-            print(float(row))
-        rowcount += 1
-    print(f'Processed {rowcount} lines.')
-    print()
+path = 'Qo2B2y6cLf4.srt'
+bert = Bert_Model(path)
+bert_encode, sentences_list, lines, timestamps = bert.run()
+summary = Bert_Summarizer(sentences_list, bert_encode)
+sentence_indices = summary.get_indices()
+notes = summary.indices_to_english(sentence_indices, toPrint=True)

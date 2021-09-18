@@ -1,4 +1,4 @@
-import Clustering
+from Clustering import Clustering
 import numpy as np
 
 class Bert_Summarizer:
@@ -24,7 +24,7 @@ class Bert_Summarizer:
         '''
         n_cluster_max = 10
         cluster = Clustering(self.bert_embed)
-        n_cluster, kmeans = cluster.compute_optimal_custer(n_cluster_max)
+        n_cluster, kmeans = cluster.compute_optimal_cluster(n_cluster_max)
         sentence_ind = cluster.get_central_sentences(n_cluster, kmeans)
         return sentence_ind, kmeans, n_cluster
 
