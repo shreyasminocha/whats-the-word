@@ -71,7 +71,7 @@ class Bert_Model:
           sentences_list.append(past_line_fragment+' '+cur_line_arr[0])
           past_line_fragment = ''
           ind_sentence_start = 1
-      
+
       # print("cur_line_arr=", cur_line_arr)
       # print("cur_line_ends_with_period=", cur_line_ends_with_period)
       # print("ind_sentence_start=", ind_sentence_start)
@@ -94,25 +94,25 @@ class Bert_Model:
 
   def bert_text_preparation(self, text, tokenizer):
     """Preparing the input for BERT
-    
+
     Takes a string argument and performs
     pre-processing like adding special tokens,
     tokenization, tokens to ids, and tokens to
     segment ids. All tokens are mapped to seg-
     ment id = 1.
-    
+
     Args:
         text (str): Text to be converted
         tokenizer (obj): Tokenizer object
             to convert text into BERT-re-
             adable tokens and ids
-        
+
     Returns:
         list: List of BERT-readable tokens
         obj: Torch tensor with token ids
         obj: Torch tensor segment ids
-    
-    
+
+
     """
     marked_text = "[CLS] " + text + " [SEP]"
     tokenized_text = tokenizer.tokenize(marked_text)
@@ -124,10 +124,10 @@ class Bert_Model:
     segments_tensors = torch.tensor([segments_ids])
 
     return tokenized_text, tokens_tensor, segments_tensors
-    
+
   def get_bert_embeddings(self, tokens_tensor, segments_tensors, model):
     """Get embeddings from an embedding model
-    
+
     Args:
         tokens_tensor (obj): Torch tensor size [n_tokens]
             with token ids for each token in text
@@ -135,14 +135,14 @@ class Bert_Model:
             with segment ids for each token in text
         model (obj): Embedding model to generate embeddings
             from token and segment ids
-    
+
     Returns:
         list: List of list of floats of size
             [n_tokens, n_embedding_dimensions]
             containing embeddings for each token
-    
+
     """
-    
+
     # Gradient calculation id disabled
     # Model is in inference mode
     with torch.no_grad():
@@ -174,7 +174,7 @@ class Bert_Model:
 
         #if (sentence_ind > 100):
         #  break
-        
+
         # if (sentence_ind < 3):
         #   print(len(tokenized_text))
         #   print(tokenized_text[0])
@@ -187,7 +187,7 @@ class Bert_Model:
         # Find the position 'bank' in list of tokens
         #word_index = tokenized_text.index('bank')
         # Get the embedding for bank
-        
+
         token_len = len(tokenized_text)
 
         # for ind_token in range(token_len):
@@ -207,4 +207,4 @@ class Bert_Model:
     return self.run_bert_encoding(sentences_list), sentences_list, lines, timestamps
 
 
-    
+
