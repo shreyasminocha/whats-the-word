@@ -4,7 +4,7 @@ from google.cloud import speech
 # Instantiates a client
 client = speech.SpeechClient()
 
-media_uri = "gs://lecture_audio_files/Class 1, Part 2 - Economic Growth Theory and the Direct Elements in Innovation-n0QLcw-CHmk.mp3"
+media_uri = "gs://lecture_audio_files/Phil Lempert's 2 minute Speech Demo.mp3"
 
 audio_aud = speech.RecognitionAudio(uri=media_uri)
 
