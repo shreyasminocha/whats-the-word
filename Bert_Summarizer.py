@@ -14,7 +14,7 @@ class Bert_Summarizer:
         self.english_sentences = np.array(english_sentences_input, copy=True)
         self.bert_embed = np.array(bert_embed_input, copy=True)
 
-    def get_indices(self):
+    def get_indices(self, n_cluster_max=10):
         '''
         Gets indices of key content in self.english_sentences using Clustering and BERT
         Out
@@ -22,7 +22,6 @@ class Bert_Summarizer:
             kmeans; sklearn.cluster.KMeans object representing the fitted cluster of bert embeds
             n_cluster; number of clusters, equivalent to number of returned english sentences
         '''
-        n_cluster_max = 10
         cluster = Clustering(self.bert_embed)
         n_cluster, kmeans = cluster.compute_optimal_cluster(n_cluster_max)
         sentence_ind = cluster.get_central_sentences(n_cluster, kmeans)

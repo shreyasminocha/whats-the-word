@@ -161,16 +161,16 @@ class Bert_Model:
     return list_token_embeddings
 
 
-  def run_bert_encoding(self, sentences_list):
+  def run_bert_encoding(self, sentences_list, num_attributes=768):
     # Getting embeddings for the target
     # word in all given contexts
     sentences_list_len = len(sentences_list)
-    target_word_embeddings = np.empty((sentences_list_len, self.tokenizer.hidden_size)) # TODO Change the constant
+    target_word_embeddings = np.empty((sentences_list_len, num_attributes))
 
     sentence_ind = 0
     for text in sentences_list:
-        tokenized_text, tokens_tensor, segments_tensors = bert_text_preparation(text, self.tokenizer)
-        list_token_embeddings = get_bert_embeddings(tokens_tensor, segments_tensors, self.model)
+        tokenized_text, tokens_tensor, segments_tensors = self.bert_text_preparation(text, self.tokenizer)
+        list_token_embeddings = self.get_bert_embeddings(tokens_tensor, segments_tensors, self.model)
 
         #if (sentence_ind > 100):
         #  break
@@ -203,17 +203,8 @@ class Bert_Model:
     return target_word_embeddings
 
   def run(self):
-    sentences_list = self.make_english_sentences()
-    return self.run_bert_encoding(sentences_list)
+    sentences_list, lines, timestamps = self.make_english_sentences()
+    return self.run_bert_encoding(sentences_list), sentences_list, lines, timestamps
 
 
     
-
-
-path2 = 'Qo2B2y6cLf4.srt'
-mdl = Bert_Model(path2)
-target_word_embeddings = mdl.run()
-print(len(target_word_embeddings))
-print(len(target_word_embeddings[2]))
-print(target_word_embeddings)
-#target_word_embeddings is 6 (input sentences) by 768 (attributes measured)

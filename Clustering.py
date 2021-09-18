@@ -52,12 +52,13 @@ class Clustering:
             fitted KMeans instance with the optimal # clusters
         '''
         best_silh = -1
-        best_n_cluster = 0
+        best_n_cluster = None
         best_KMeans = None
-        for n_cluster in range(2, n_cluster_max):
+        for n_cluster in range(5, n_cluster_max):
             KMeans_fitted = self.fit_cluster(n_cluster)
             silh = self.get_silh(KMeans_fitted)
             if silh > best_silh:
+                print("here")
                 best_silh = silh
                 best_n_cluster = n_cluster
                 best_KMeans = KMeans_fitted
@@ -98,7 +99,10 @@ class Clustering:
         Out
             array of the indices of self.bert_embed sentences of cluster cluster_id
         '''
-        indices = np.where(KMeans_fitted.labels_[0] == cluster_id)
+        indices = np.where(KMeans_fitted.labels_ == cluster_id)
+        print("indices")
+        print(indices)
+        print("_____")
         return indices[0]
 
 
