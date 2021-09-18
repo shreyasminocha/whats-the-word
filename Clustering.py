@@ -31,16 +31,29 @@ class Clustering:
         '''
         return silhouette_score(self.bert_embed, KMeans_fitted.labels_)
 
-    def optimal_cluster(self, n_cluster_range):
+    def optimal_cluster(self, n_cluster_max):
         '''
         Finds the optimal number of clusters
         In
-            n_cluster_range; the range of # of clusters to be inspecteds
+            n_cluster_max; the max # of clusters to be inspected
         Out
-            optimal # of clusters    
+            # clusters that yields the maximum silhouette score
+            fitted KMeans instance with the optimal # clusters
         '''
-        
+        best_silh = -1
+        best_n_cluster = 0
+        best_KMeans = None
+        for n_cluster in range(2, n_cluster_max):
+            KMeans_fitted = self.fit_cluster(n_cluster)
+            silh = self.get_silh(KMeans_fitted)
+            if silh > best_silh:
+                best_silh = silh
+                best_n_cluster = n_cluster
+                best_KMeans = KMeans_fitted
+        return best_n_cluster, best_KMeans
+
     
+
 X = np.array([[1, 2], [1, 4], [1, 0], [10, 2], [10, 4], [10, 0]])
 kmeans = kmeans_plusplus(n_clusters=2, random_state=0).fit(X)
 print(kmeans.labels_)
