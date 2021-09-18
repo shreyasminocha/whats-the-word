@@ -11,10 +11,16 @@ class Clustering:
             bert_embed_input; sentence embedding array output by BERT
                                 array-like of shape (n_samples, n_features)
         '''
-        self.bert_embed = np.array(bert_embed_input)
+        self.bert_embed = np.array(bert_embed_input, copy=True)
 
     def apply_embed_weights(self, weights):
-        self.bert_embed = np.multiply(self.bert_embed, weights)
+        '''
+        Assigns user-defined weights to each element of the embedding vectors.
+        In
+            weights; numerical weights to apply to self.bert_embed across the features
+        '''
+        for sentence_ind in range(self.bert_embed.length):
+            self.bert_embed[sentence_ind:] = np.multiply(self.bert_embed[sentence_ind:], weights)
     
     def fit_cluster(self, n_cluster):
         '''
