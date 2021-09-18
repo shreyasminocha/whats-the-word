@@ -1,9 +1,10 @@
 from pysubparser import parser
 
-transcript = parser.parse()
+def srt_to_text(srt_path):
+    lines = []
+    transcript = parser.parse(srt_path)
 
-timestamps = []
-lines = []
-for line in transcript:
-    timestamps.append(str(line.start))
-    lines.append(str(line))
+    for line in transcript:
+        lines.append(str(line))
+
+    return '\n'.join(lines)
