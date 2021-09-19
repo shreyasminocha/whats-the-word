@@ -5,7 +5,7 @@ from pysubparser import parser
 
 class Bert_Model:
 
-  def __init__(self, path):
+  def __init__(self):
     '''
     Initializer for Bert_Model class.
     In
@@ -13,20 +13,20 @@ class Bert_Model:
     '''
     self.model = BertModel.from_pretrained('bert-base-uncased', output_hidden_states = True)
     self.tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
-    self.transcript = parser.parse(path)
 
 
-  def make_english_sentences(self):
+  def make_english_sentences(self, transcript_path):
     '''
     Converts srt file to list of separate full english sentences.
+    In
+      transcript_path, string filepath of the srt file of lecture transcript
     Out
-      sentences_list; list of separate full sentences within self.transcript
-      lines; lines within self.transcript
-      timestamps; timestamps within self.transcript
+      sentences_list; list of separate full sentences within transcript
     '''
+    transcript = parser.parse(transcript_path)
     timestamps = []
     lines = []
-    for line in self.transcript:
+    for line in transcript:
         timestamps.append(str(line.start))
         lines.append(str(line))
 
@@ -84,7 +84,7 @@ class Bert_Model:
           break
         sentences_list.append(cur_line_arr[ind_sentence])
 
-    return sentences_list, lines, timestamps
+    return sentences_list #, lines, timestamps
 
     # print("past_line_fragment=", past_line_fragment)
     # Don't append the past_line_fragment after the for loop because
@@ -201,10 +201,6 @@ class Bert_Model:
         #target_word_embeddings.append(word_embedding)
         sentence_ind += 1
     return target_word_embeddings
-
-  def run(self):
-    sentences_list, lines, timestamps = self.make_english_sentences()
-    return self.run_bert_encoding(sentences_list), sentences_list, lines, timestamps
 
 
 

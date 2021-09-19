@@ -2,26 +2,48 @@ import os
 from google.cloud import speech
 from google.oauth2 import service_account
 
-# Instantiates a client
+def speech_to_text(media_uri):
+    '''
+    Returns the separated sentences from text-to-speech.
+    In
+        media_uri; filepath of the video
+    Out
+        list containing the sentences as strings; separating by periods (.)
+    '''
+    # Instantiates a client
 
-credentials_info = service_account.Credentials.from_service_account_file('whats-the-word-326419-18451736e7c6.json')
+    #media_uri = "gs://lecture_audio_files/Class 1, Part 2 - Economic Growth Theory and the Direct Elements in Innovation-n0QLcw-CHmk.mp3"
 
-client = speech.SpeechClient(credentials=credentials_info)
+    #media_uri = "gs://lecture_audio_files/Phil Lempert's 2 minute Speech Demo.mp3"
 
-media_uri = "gs://lecture_audio_files/Phil Lempert's 2 minute Speech Demo.mp3"
 
-audio_aud = speech.RecognitionAudio(uri=media_uri)
+    credentials_info = service_account.Credentials.from_service_account_file('whats-the-word-326419-18451736e7c6.json')
 
-config_aud = speech.RecognitionConfig(
-    encoding=speech.RecognitionConfig.AudioEncoding.LINEAR16,
-    sample_rate_hertz=16000,
-    language_code="en-US"
-)
+    client = speech.SpeechClient(credentials=credentials_info)
 
-operation = client.recognize(
-    config=config_aud,
-    audio=audio_aud
-)
 
-response = operation.result()
-print(response)
+    audio_aud = speech.RecognitionAudio(uri=media_uri)
+
+    config_aud = speech.RecognitionConfig(
+        #encoding=speech.RecognitionConfig.AudioEncoding.LINEAR16,
+        sample_rate_hertz=8000,
+        language_code="en-US",
+        enable_automatic_punctuation=True,
+        enable_word_time_offsets=False
+    )
+
+    operation = client.long_running_recognize(
+        config=config_aud,
+        audio=audio_aud,
+    )
+
+    sentences =  ""
+    response = operation.result()
+
+    for item in response.results:
+        sentences = sentences + format(item.alternatives[0].transcript)
+
+    sentences = sentences.split(".")
+    return sentences
+
+
