@@ -73,9 +73,6 @@ class Bert_Model:
           past_line_fragment = ''
           ind_sentence_start = 1
 
-      # print("cur_line_arr=", cur_line_arr)
-      # print("cur_line_ends_with_period=", cur_line_ends_with_period)
-      # print("ind_sentence_start=", ind_sentence_start)
       for ind_sentence in range(ind_sentence_start, cur_line_arr_len):
         if (not cur_line_ends_with_period) and ind_sentence == cur_line_arr_len-1:
           add_space = True if past_line_fragment else False
@@ -87,7 +84,6 @@ class Bert_Model:
 
     return sentences_list #, lines, timestamps
 
-    # print("past_line_fragment=", past_line_fragment)
     # Don't append the past_line_fragment after the for loop because
     # the past_line_fragment (represents the last line fragment that doesn't make a complete sentence)
     # may not be a complete sentence.
