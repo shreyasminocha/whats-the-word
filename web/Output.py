@@ -3,7 +3,6 @@ from Bert_Model import Bert_Model
 from Bert_Summarizer import Bert_Summarizer
 from speech_to_text import speech_to_text
 
-
 class Output:
 
     def __init__(self):
