@@ -14,7 +14,7 @@
 	<header>
 		<img alt="Cursive text that says: What's the word?" src="/static/whats-the-word-logo.png" class="logo"></img>
 
-		<p>Upload a subtitles file or an audio file and get a summary of its contents!</p>
+		<p>Upload a <strong>subtitles file</strong> or an <strong>audio file</strong> and get a summary of its contents!</p>
 	</header>
 
 	<form action="{{ url_for('notes') }}" method="post" enctype="multipart/form-data">
@@ -30,5 +30,7 @@
 		<input type="file" name="audio_file" id="audio_file" accept=".mp3">
 		<input type="submit" value="submit">
 	</form>
+
+	<p class="blurb"><em>What’s the Word?</em> is a lecture-notes assistant web app that condenses hefty audio lectures and transcripts into manageable bullet-point summaries. Online education has generated millions of hours of Zoom lectures. Combing through these lectures for exam-relevant information is both boring and tedious. <em>What’s the Word?</em> offers a solution by summarizing hour-length videos into 1-page study guides, allowing students to review lecture material more conveniently, comprehensively, and efficiently.</p>
 </body>
 </html>
