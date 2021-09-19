@@ -44,7 +44,9 @@ class Bert_Summarizer:
             print(english)
         return english
 
-    def 
+    def complete_strings(self, indices, lines, timestamps):
+        english = self.indices_to_english(indices, toPrint=False)
+        
 
 
 

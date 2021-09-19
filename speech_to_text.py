@@ -1,8 +1,12 @@
 import os
 from google.cloud import speech
+from google.oauth2 import service_account
 
 # Instantiates a client
-client = speech.SpeechClient()
+
+credentials_info = service_account.Credentials.from_service_account_file('whats-the-word-326419-18451736e7c6.json')
+
+client = speech.SpeechClient(credentials=credentials_info)
 
 media_uri = "gs://lecture_audio_files/Phil Lempert's 2 minute Speech Demo.mp3"
 
