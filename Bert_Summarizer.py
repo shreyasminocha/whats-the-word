@@ -14,7 +14,7 @@ class Bert_Summarizer:
         self.english_sentences = np.array(english_sentences_input, copy=True)
         self.bert_embed = np.array(bert_embed_input, copy=True)
 
-    def get_indices(self, n_cluster_max=10):
+    def get_indices(self, n_cluster_max=25):
         '''
         Gets indices of key content in self.english_sentences using Clustering and BERT
         Out
@@ -36,9 +36,10 @@ class Bert_Summarizer:
         Out
             array of the english sentences located at indices within self.english_sentences
         '''
-        english = np.chararray(indices.shape)
+        english = []
+        output_ind = 0
         for ind in indices:
-            english[ind] = self.english_sentences[ind]
+            english.append(self.english_sentences[ind][0])
         if toPrint:
             print(english)
         return english

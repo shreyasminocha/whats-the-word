@@ -53,7 +53,7 @@ class Bert_Model:
       # Remove (possibly) some elements in the end of cur_line_arr
       # such that the last element in cur_line_arr is not empty
       ind_cur_line_arr = cur_line_arr_len-1
-      last_ele_is_empty = not cur_line_arr[cur_line_arr_len-1];
+      last_ele_is_empty = not cur_line_arr[cur_line_arr_len-1]
       cur_line_ends_with_period = False
 
       while last_ele_is_empty:

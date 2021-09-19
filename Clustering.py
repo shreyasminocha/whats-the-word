@@ -58,7 +58,6 @@ class Clustering:
             KMeans_fitted = self.fit_cluster(n_cluster)
             silh = self.get_silh(KMeans_fitted)
             if silh > best_silh:
-                print("here")
                 best_silh = silh
                 best_n_cluster = n_cluster
                 best_KMeans = KMeans_fitted
@@ -100,9 +99,6 @@ class Clustering:
             array of the indices of self.bert_embed sentences of cluster cluster_id
         '''
         indices = np.where(KMeans_fitted.labels_ == cluster_id)
-        print("indices")
-        print(indices)
-        print("_____")
         return indices[0]
 
 
