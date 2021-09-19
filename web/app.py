@@ -3,11 +3,11 @@ import os
 from flask import Flask, request, render_template, redirect, url_for
 from werkzeug.utils import secure_filename
 
-#import sys
+import sys
 
 #print(sys.path())
 
-#sys.path.append('./')
+sys.path.append('./')
 
 from Output import Output
 
@@ -62,6 +62,8 @@ def notes():
 
 	filename = secure_filename(file.filename)
 	path_to_file = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+	path_to_file = path_to_file[1:]
+	print(path_to_file)
 	file.save(path_to_file)
 
 	# Create a object of Class Output

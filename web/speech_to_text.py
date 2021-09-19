@@ -1,6 +1,7 @@
 import os
 from google.cloud import speech
 from google.oauth2 import service_account
+import re
 
 def speech_to_text(media_uri):
     '''
@@ -26,7 +27,7 @@ def speech_to_text(media_uri):
 
     config_aud = speech.RecognitionConfig(
         #encoding=speech.RecognitionConfig.AudioEncoding.LINEAR16,
-        sample_rate_hertz=8000,
+        sample_rate_hertz=16000,
         language_code="en-US",
         enable_automatic_punctuation=True,
         enable_word_time_offsets=False
@@ -43,7 +44,7 @@ def speech_to_text(media_uri):
     for item in response.results:
         sentences = sentences + format(item.alternatives[0].transcript)
 
-    sentences = sentences.split(".")
+    sentences = re.split('[\.?!]', sentences)
     return sentences
 
 

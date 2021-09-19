@@ -14,8 +14,20 @@ from Output import Output
 # print(sentence_ind, n_cluster)
 # notes = summary.indices_to_english(sentence_ind, toPrint=True)
 
-mp3_path = "gs://lecture_audio_files/Phil Lempert's 2 minute Speech Demo.mp3"
+# mp3_path = "gs://lecture_audio_files/Phil Lempert's 2 minute Speech Demo.mp3"
+# sentences = speech_to_text(mp3_path)
+# out = Output()
+# out.set_sentences(sentences)
+# print(out.compute_notes())
+
+# srt_path = "Intro-to-Psychology-Crash-Course-Psychology-1.srt"
+# out = Output()
+# out.set_sentences_using_srt_path(srt_path)
+# print(out.compute_notes())
+
+mp3_path = "gs://lecture_audio_files/videoplayback.mp3"
 sentences = speech_to_text(mp3_path)
 out = Output()
 out.set_sentences(sentences)
 print(out.compute_notes())
+

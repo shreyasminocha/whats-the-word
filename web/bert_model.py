@@ -2,6 +2,7 @@ from transformers import BertTokenizer, BertModel
 import numpy as np
 import torch
 from pysubparser import parser
+import re
 
 class Bert_Model:
 
@@ -47,7 +48,7 @@ class Bert_Model:
     past_line_fragment = ''
     for ind_line in range(lines_len):
       cur_line = lines[ind_line]
-      cur_line_arr = cur_line.split(".")
+      cur_line_arr = re.split('[\.?!]', cur_line)
       cur_line_arr_len = len(cur_line_arr)
 
       # Remove (possibly) some elements in the end of cur_line_arr
