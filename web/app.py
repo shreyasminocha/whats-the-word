@@ -3,7 +3,7 @@ import os
 from flask import Flask, request, render_template, redirect, url_for
 from werkzeug.utils import secure_filename
 
-ALLOWED_EXTS = ['srt', 'txt']
+ALLOWED_EXTS = ['srt', 'txt', 'mp3']
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = '/tmp'
@@ -15,7 +15,35 @@ def index():
 
 @app.route('/notes', methods=['GET', 'POST'])
 def notes():
-	file = request.files['transcript']
+	# has_transcript_file = True
+	# has_audio_file = True
+
+	# has_transcript_file = request.files['transcript']
+	# has_audio_file = request.files['audio_file']
+	# print("has_transcript_file", has_transcript_file)
+	# print("has_audio_file", has_audio_file)
+
+	has_transcript_file = 'transcript_file' in request.files.keys()
+	has_audio_file = 'audio_file' in request.files.keys()
+
+	print("has_transcript_file", has_transcript_file)
+	print("has_audio_file", has_audio_file)
+
+	if has_transcript_file:
+		file = request.files['transcript_file']
+	else:
+		file = request.files['audio_file']
+	
+	print("request.files", request.files)
+
+	# for key in request.files.keys():
+	# 	print("request.files.keys item=", key)
+
+	#print("app notes run()");
+
+	#print("request.files['audio_file']");
+
+	print("file.filename=", file.filename)
 
 	if file.filename == '':
 		return render_template('notes.html', notes=[]), 400
