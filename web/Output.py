@@ -1,5 +1,5 @@
 import numpy as np
-from Bert_Model import Bert_Model
+from bert_model import Bert_Model
 from Bert_Summarizer import Bert_Summarizer
 from speech_to_text import speech_to_text
 

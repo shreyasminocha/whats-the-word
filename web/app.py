@@ -40,7 +40,6 @@ def notes():
 
 	filename = secure_filename(file.filename)
 	path_to_file = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-	path_to_file = path_to_file[1:]
 	file.save(path_to_file)
 
 	# Create a object of Class Output
