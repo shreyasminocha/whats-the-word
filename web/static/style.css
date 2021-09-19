@@ -1,0 +1,26 @@
+p {
+    background-color: red;
+}
+
+#test-div {
+    background-color: red;
+}
+
+p {
+font-family: "Lucida Console", "Courier New", monospace;
+
+margin-top: 5vh;
+margin-bottom: 5vh;
+
+}
+
+body {
+    width: 70%;
+    margin: 1em auto;
+}
+
+h1#header-h1 {
+    font-size: 3.5em;
+    text-align: center;
+    margin-bottom: 10vh;
+}
