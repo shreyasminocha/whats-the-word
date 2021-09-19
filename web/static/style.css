@@ -4,9 +4,22 @@ html {
 
 body {
     width: 50%;
+    max-width: 650px;
     height: 100%;
     margin: 2em auto;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+@media screen and (max-width: 900px) {
+    body {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    body {
+        width: 95%;
+    }
 }
 
 p {
@@ -14,6 +27,11 @@ p {
 }
 
 header {
-    font-family: 'Raleway', sans-serif;
     margin-bottom: 1.5em;
+    text-align: center;
+}
+
+.logo {
+    height: 8em;
+    display: inline-block;
 }
