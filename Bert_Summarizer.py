@@ -44,18 +44,7 @@ class Bert_Summarizer:
             print(english)
         return english
 
-    def indices_to_embed(self, indices):
-        '''
-        Returns the bert embed vectors located at indices
-        In
-            indices; array of indices from self.bert_embed to return as embed vectors
-        Out
-            array of bert embed vectors located at indices
-        '''
-        embed = np.empty(indices.shape)
-        for ind in indices:
-            embed[ind] = self.bert_embed[ind]
-        return embed
+    def 
 
 
 
